@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <body>
+      <h1>See CL for message reply</h1>
+    </body>
+    <script
+      src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+      integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const socket = io('http://localhost:3000');
+      socket.on('connect', function () {
+        console.log('Connected to server');
+
+        socket.emit('message', { msg: 'Hello from client' });
+      });
+
+      socket.on('message', function (data) {
+        console.log('event :', data);
+      });
+
+      socket.on('exception', function (data) {
+        console.log('event :', data);
+      });
+
+      socket.on('disconnect', function (data) {
+        console.log('disconnected');
+      });
+    </script>
+  </head>
+</html>
